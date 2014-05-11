@@ -1,3 +1,7 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP MINI_Blade_Fuse_Holder
+D Littlefuse 01530008 MINI Blade Fuse Holder (10,9mm car fuse)
+$ENDCMP
+#
 #End Doc Library

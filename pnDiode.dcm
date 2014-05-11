@@ -3,5 +3,26 @@ EESchema-DOCLIB  Version 2.0
 $CMP SS54
 D 5A 40V Shottky diode, SMC
 $ENDCMP
+$CMP SS32
+D 3A 20V Shottky diode, SMC
+$ENDCMP
+$CMP SS33
+D 3A 30V Shottky diode, SMC
+$ENDCMP
+$CMP SS34
+D 3A 40V Shottky diode, SMC
+$ENDCMP
+$CMP SS35
+D 3A 50V Shottky diode, SMC
+$ENDCMP
+$CMP SS36
+D 3A 60V Shottky diode, SMC
+$ENDCMP
+$CMP SS39
+D 3A 90V Shottky diode, SMC
+$ENDCMP
+$CMP SS310
+D 3A 100V Shottky diode, SMC
+$ENDCMP
 #
 #End Doc Library
