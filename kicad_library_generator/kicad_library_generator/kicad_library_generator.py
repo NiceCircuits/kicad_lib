@@ -55,7 +55,7 @@ F3 "" 0 0 40 H V C CNN
         self.libFile.write("ENDDEF\n")
     
     def drawRect(self, x1, y1, x2, y2, width=0, fill=0):
-        # fill = 0 - none, 1 - foreground, 2 - background
+        # fill = 0 - none, 1 - background, 2 - foreground
         if fill == 1:
             fill = "f"
         elif fill == 2:

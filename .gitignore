@@ -1,2 +1,3 @@
 *.bak
 *.bck
+/kicad_library_generator/kicad_library_generator/test.py
