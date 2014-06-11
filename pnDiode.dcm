@@ -24,5 +24,8 @@ $ENDCMP
 $CMP SS310
 D 3A 100V Shottky diode, SMC
 $ENDCMP
+$CMP SS110B
+D 1A 100V Shottky diode, SMB
+$ENDCMP
 #
 #End Doc Library

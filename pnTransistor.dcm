@@ -1,3 +1,7 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP FDC6401N
+D Dual 3A 20V 70mOhm N MOSFET in SOT23-6 package
+$ENDCMP
+#
 #End Doc Library
