@@ -6,7 +6,7 @@ Created on 11-05-2014
 import exceptions
 from enaml.enums import Orientation
 
-class kicad_library_generator(object):
+class symbol_generator(object):
     libFile=None
     
     def __init__(self,filePath):
@@ -108,5 +108,8 @@ class conSymbol(symbol):
 
         
 if __name__ == "__main__":
-    gen = kicad_library_generator("test.lib")
-    gen.library_generator([conSymbol])
+    if 0:
+        gen = symbol_generator("test.lib")
+        gen.library_generator([conSymbol])
+    if 1:
+        
