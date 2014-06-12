@@ -1,3 +1,6 @@
 *.bak
 *.bck
 /kicad_library_generator/kicad_library_generator/test.py
+/kicad_library_generator/footprint_generator/test.pretty
+/kicad_library_generator/symbol_generator/test.lib
+/kicad_library_generator/symbol_generator/test.py
