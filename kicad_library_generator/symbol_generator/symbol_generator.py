@@ -3,8 +3,6 @@ Created on 11-05-2014
 
 @author: Piotr Nowicki
 '''
-import exceptions
-from enaml.enums import Orientation
 
 class symbol_generator(object):
     libFile=None
@@ -108,8 +106,8 @@ class conSymbol(symbol):
 
         
 if __name__ == "__main__":
-    if 0:
+    if 1:
         gen = symbol_generator("test.lib")
         gen.library_generator([conSymbol])
     if 1:
-        
+        pass
