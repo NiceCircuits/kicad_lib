@@ -96,7 +96,7 @@ class pinFootprint(footprint):
         h = cols * 1.27
         l = rows * 1.27
         self.drawRect([-l, -h], [l, h])
-        self.drawPolygon([[-l+0.635, 3.81], [-l+1.905, 3.81], [-l+1.27, 2.54]])
+        self.drawPolygon([[-l+0.635, cols*1.27+1.27], [-l+1.905, cols*1.27+1.27], [-l+1.27, cols*1.27]])
         # pins
         self.drawPins(rows, cols)
         self.footprintFooter()
