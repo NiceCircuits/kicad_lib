@@ -1,7 +1,7 @@
 '''
 Created on 11-06-2014
 
-@author: Masta
+@author: Piotr Nowicki
 '''
 import os
 
@@ -39,16 +39,6 @@ class footprint():
     
     def footprintFooter(self):
         self.libFile.write(")\n")
-
-#    def drawRect(self, x1, y1, x2, y2, width=0, fill=0):
-#        # fill = 0 - none, 1 - background, 2 - foreground
-#        if fill == 1:
-#            fill = "f"
-#        elif fill == 2:
-#            fill = "F"
-#        else:
-#            fill = "N"
-#        self.libFile.write("S %d %d %d %d 0 1 %d %s\n" % (x1, y1, x2, y2, width, fill))
 
     def drawLine(self, start, end, layer = "F.SilkS", width=0.15):
         self.libFile.write("(fp_line (start %f %f) (end %f %f) (layer %s) (width %f))\n" %
@@ -143,10 +133,45 @@ class idcFootprint(pinFootprint):
             for kind in self.kinds:
                 self.footprint(r, 2, kind)
 
+class pinSmdFootprint(footprint):
+    kinds = [{"name":"standard", "postfix":"", "pinSize":[[1,2.75],[1,3.25]]}]
+    def footprint(self, rows, cols, kind=None):
+        if not kind:
+            kind = self.kinds[0]
+        if cols == 1:
+            name = "PIN%dSMD%s" % (rows, kind["postfix"])
+        elif cols == 2:
+            name = "PIN%dx%dSMD%s" % (rows, cols, kind["postfix"])
+        else:
+            raise Exception("Number of columns (%d) to high!" % cols)
+        # header
+        h = (6+(cols-1)*2.5)/2 
+        l = rows * 1.27
+        self.footprintHeader(name, "CON", refPos=[0,h+0.75], namePos=[0,-h-0.75])
+        # body
+        self.drawRect([-l, -h], [l, h])
+        self.drawPolygon([[-l, (cols-1)*1.27], [-l-1.27, (cols-0.5)*1.27], [-l-1.27, (cols-1.5)*1.27]])
+        # pins
+        self.drawPins(rows, cols, kind)
+        self.footprintFooter()
+    
+    def drawPins(self, rows, cols, kind):
+        for c in range(cols): # 1 or 2
+            for r in range(rows):
+                shape = "rect"
+                self.drawPad(r*cols+c+1, [((-rows/2.0 + 0.5 +r) * 2.54), (1.375 if cols==1 else 2.375)*(1 if (r*cols+c+1)%2 else -1)], kind["pinSize"][cols-1], 
+                    shape = shape, drill = 1.0, padType = "smd", layers ="F.Cu F.Paste F.Mask")
+
+    def library(self, rows=range(1,41), cols=[1,2]):
+        for c in cols:
+            for r in rows:
+                for kind in self.kinds:
+                    self.footprint(r, c, kind)
+
         
 if __name__ == "__main__":
     if 1:
         gen = footprint_generator("test.pretty")
-        gen.library_generator([idcFootprint])
+        gen.library_generator([pinSmdFootprint])
     if 1:
         pass
