@@ -1,7 +1,7 @@
-(module TSSOP16 (layer F.Cu) (tedit 539C1573)
+(module TSSOP16 (layer F.Cu) (tedit 539C8569)
   (solder_paste_margin -0.0508)
   (attr smd)
-  (fp_text reference TSSOP16 (at 0 3.7) (layer F.SilkS)
+  (fp_text reference TSSOP16 (at 0 3.7) (layer F.SilkS) hide
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_text value VAL** (at 0 -3.6) (layer F.SilkS)
