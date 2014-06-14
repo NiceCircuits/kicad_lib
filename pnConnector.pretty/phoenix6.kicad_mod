@@ -1,8 +1,8 @@
-(module phoenix6 (layer F.Cu) (tedit 539B2ABE)
+(module phoenix6 (layer F.Cu) (tedit 539C1A1F)
   (fp_text reference CON** (at 0 -2.8) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (fp_text value phoenix6 (at 0 5.8) (layer F.SilkS)
+  (fp_text value phoenix6 (at 0 5.8) (layer F.SilkS) hide
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_line (start -15.2 -1.8) (end 15.2 -1.8) (layer F.SilkS) (width 0.15))
