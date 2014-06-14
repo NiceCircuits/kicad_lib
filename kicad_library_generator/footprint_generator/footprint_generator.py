@@ -82,11 +82,15 @@ class footprint():
             (name, padType, shape, position[0], position[1], orientationString, size[0], size[1], drillString, layers))
 
 class pinFootprint(footprint):
-    def footprint(self, rows, cols):
+    kinds = [{"name":"standard", "postfix":"","pinSize":[2,2]},
+        {"name":"narrowPads", "postfix":"_a","pinSize":[1.5,2]}]
+    def footprint(self, rows, cols, kind=None):
+        if not kind:
+            kind = self.kinds[0]
         if cols == 1:
-            name = "PIN%d" % (rows)
+            name = "PIN%d%s" % (rows, kind["postfix"])
         elif cols == 2:
-            name = "PIN%dx%d" % (rows, cols)
+            name = "PIN%dx%d%s" % (rows, cols, kind["postfix"])
         else:
             raise Exception("Number of columns (%d) to high!" % cols)
         # header
@@ -98,27 +102,30 @@ class pinFootprint(footprint):
         self.drawRect([-l, -h], [l, h])
         self.drawPolygon([[-l+0.635, cols*1.27+1.27], [-l+1.905, cols*1.27+1.27], [-l+1.27, cols*1.27]])
         # pins
-        self.drawPins(rows, cols)
+        self.drawPins(rows, cols, kind)
         self.footprintFooter()
     
-    def drawPins(self, rows, cols):
+    def drawPins(self, rows, cols, kind):
         for c in range(cols): # 1 or 2
             for r in range(rows):
                 if (c==0 and r==0):
                     shape = "rect"
                 else:
-                    shape = "circle"
-                self.drawPad(r*cols+c+1, [((-rows/2.0 + 0.5 +r) * 2.54), (-c+0.5*(cols-1))*2.54], [2, 2], 
+                    shape = "oval"
+                self.drawPad(r*cols+c+1, [((-rows/2.0 + 0.5 +r) * 2.54), (-c+0.5*(cols-1))*2.54], kind["pinSize"], 
                     shape = shape, drill = 1.0, padType = "thru_hole", layers ="*.Cu *.Mask F.SilkS")
 
     def library(self, rows=range(1,41), cols=[1,2]):
         for c in cols:
             for r in rows:
-                self.footprint(r, c)
+                for kind in self.kinds:
+                    self.footprint(r, c, kind)
 
 class idcFootprint(pinFootprint):
-    def footprint(self, rows, cols):
-        name = "IDC%d" % (rows*2)
+    def footprint(self, rows, cols, kind=None):
+        if not kind:
+            kind = self.kinds[0]
+        name = "IDC%d%s" % (rows*2, kind["postfix"])
         # header
         self.footprintHeader(name, "CON", refPos=[0,6], namePos=[0,-5])
         # body
@@ -128,17 +135,18 @@ class idcFootprint(pinFootprint):
         self.drawRect([-1.5, h], [1.5, h+1])
         self.drawPolygon([[-l+0.635, h+1.27], [-l+1.905, h+1.27], [-l+1.27, h]])
         # pins
-        self.drawPins(rows, cols)
+        self.drawPins(rows, cols, kind)
         self.footprintFooter()
 
     def library(self, rows=range(3,35)):
         for r in rows:
-            self.footprint(r, 2)
+            for kind in self.kinds:
+                self.footprint(r, 2, kind)
 
         
 if __name__ == "__main__":
     if 1:
         gen = footprint_generator("test.pretty")
-        gen.library_generator([idcFootprint, pinFootprint])
+        gen.library_generator([idcFootprint])
     if 1:
         pass
