@@ -87,6 +87,21 @@ X 6 6 200 -100 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Keystone_3002
+#
+DEF Keystone_3002 CON 0 40 Y N 1 F N
+F0 "CON" 150 10 60 H V L BNN
+F1 "Keystone_3002" 150 -50 40 H V L BNN
+F2 "pnConnector:Keystone_3002" 150 -120 40 H I L BNN
+F3 "" 0 0 60 H V C CNN
+DRAW
+S -80 0 80 -20 0 1 0 F
+S 140 20 -140 30 0 1 0 F
+X + + 0 100 80 D 50 50 1 1 w
+X - - 0 -100 80 U 50 50 1 1 w
+ENDDRAW
+ENDDEF
+#
 # MINI_Blade_Fuse_Holder
 #
 DEF MINI_Blade_Fuse_Holder F 0 0 N Y 1 F N
