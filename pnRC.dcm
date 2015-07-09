@@ -5,4 +5,9 @@ D Resistance
 K R DEV
 $ENDCMP
 #
+$CMP pot_ACP_CA6VSMD+6001
+D Resistance
+K R DEV
+$ENDCMP
+#
 #End Doc Library
